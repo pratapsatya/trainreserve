@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,6 +54,7 @@ ResultSet resultSet = null;
  <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
+        <h2>${contextPath} </h2>
 <form action="${contextPath}/payment" >
 <a onclick="document.forms['logoutForm'].submit()">Logout</a>
 <h2 align="center"><font><strong>List of Trains Available on</strong></font></h2>
