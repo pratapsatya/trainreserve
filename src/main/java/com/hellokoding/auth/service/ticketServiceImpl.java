@@ -1,5 +1,6 @@
 package com.hellokoding.auth.service;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -17,10 +18,10 @@ public class ticketServiceImpl implements ticketService {
 	private ticketRepository ticketRepository;
 	
 	@Override
-	public void insertData(String uname,String tickets,String tname)
+	public void insertData(String uname,String tickets,String tname,Date date)
 	{
 		
-		ticketRepository.insertData(uname,tickets,tname); 
+		ticketRepository.insertData(uname,tickets,tname,date); 
 		
 	}
 	@Override
