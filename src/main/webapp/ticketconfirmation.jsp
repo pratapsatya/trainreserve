@@ -100,7 +100,7 @@ e.printStackTrace();
 
 <br>
 <br>
-<a href="/welcome">Book a return ticket</a>
+<a href="${contextPath}/welcome">Book a return ticket</a>
 
 <script type="text/javascript">
 function myFun(){
