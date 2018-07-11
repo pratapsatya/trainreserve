@@ -32,6 +32,7 @@ String lname4=request.getParameter("lastname4");
 String age4=request.getParameter("age4");
 String tno=request.getParameter("nooftickets");
 String uname=request.getParameter("username");
+String date=request.getParameter("date");
 int g=0;
 int id=Integer.parseInt(num);
 int count=Integer.parseInt(tno);
@@ -90,7 +91,9 @@ while(resultSet.next()){
 e.printStackTrace();
 }
 %>
+<tr><td>date:</td><td><%=date%></td></tr>
 </table>
+
 <br>
 <br>
 <a href="/welcome">Book a return ticket</a>

@@ -53,10 +53,11 @@ ResultSet resultSet = null;
  <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-
+<form action="${contextPath}/payment" >
 <a onclick="document.forms['logoutForm'].submit()">Logout</a>
 <h2 align="center"><font><strong>List of Trains Available on</strong></font></h2>
 <h2 name="date"><% out.print(date); %></h2>
+<h2>Choose a train and continue</h2>
 <table align="center" cellpadding="5" cellspacing="5" border="1" id="mytable">
 <tr>
 
@@ -102,6 +103,8 @@ e.printStackTrace();
 }
 %>
 </table> 
+<input type="submit" value="choose train and continue">
+</form>
 
 <script type="text/javascript">
 function myFunc(x){
@@ -113,7 +116,7 @@ function myFunc(x){
 		localStorage.trainId=z;
 		localStorage.trainname=document.getElementById("mytable").rows[y].cells["4"].innerHTML;
 		localStorage.tickets=p;
-		window.location.assign("/payment")
+		/* window.location.assign("/payment") */
 }
 
 </script>
