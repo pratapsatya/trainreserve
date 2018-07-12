@@ -1,7 +1,7 @@
 #Train Reservation Simulation
 
 ## Guide
-
+https://github.com/pratapsatya/trainreserve.git
 ## Prerequisites
 - JDK 1.7 or later
 - Maven 3 or later
@@ -12,7 +12,7 @@
 - Spring Data JPA
 - Maven
 - JSP
-- HSQL
+- MYSQL
 
 ## Run
-```mvn clean spring-boot:run```
+"http://localhost:8090/login" is the starting url
