@@ -1,7 +1,9 @@
 package com.hellokoding.auth.web;
 
 import com.hellokoding.auth.model.User;
+import com.hellokoding.auth.repository.TrainRepository;
 import com.hellokoding.auth.service.SecurityService;
+import com.hellokoding.auth.service.TrainService;
 import com.hellokoding.auth.service.UserService;
 import com.hellokoding.auth.service.ticketService;
 import com.hellokoding.auth.validator.UserValidator;
@@ -9,7 +11,11 @@ import com.hellokoding.auth.validator.UserValidator;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+//import org.hibernate.annotations.common.util.impl.Log_.logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +24,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.hellokoding.auth.model.trains;
 
 @Controller
 public class UserController {
 	//private static final Logger logger = LoggerFactory.getLogger(UserController.class);	 
- 	 
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private UserService userService;
 
@@ -34,11 +41,16 @@ public class UserController {
     
     @Autowired
     private ticketService tkService;
+    @Autowired 
+	private TrainService trainService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
     	//logger.debug("Registration called");
         model.addAttribute("userForm", new User());
+        log.debug("debug level log");
+        log.info("info level log");
+        log.error("error level log");
 
         return "registration";
     }
@@ -47,6 +59,9 @@ public class UserController {
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
     	//logger.debug("Registration called");
     	userValidator.validate(userForm, bindingResult);
+    	 log.debug("debug level log");
+    	    log.info("info level log");
+    	    log.error("error level log");
 
         if (bindingResult.hasErrors()) {
             return "registration";
@@ -62,6 +77,9 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
     	//logger.debug("Registration called");
+    	 log.debug("debug level log");
+    	    log.info("info level log");
+    	    log.error("error level log");
     	if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
 
@@ -73,12 +91,17 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
+    	 log.debug("debug level log");
+    	    log.info("info level log");
+    	    log.error("error level log");
     	//logger.debug("Registration called");
     	return "Welcome";
     }
     @RequestMapping(value = {"/trains"}, method = RequestMethod.POST)
-    public String Trains(Model model) {
+    public String Trains(Model model,@RequestParam(name="source") String source,@RequestParam(name="destiny") String destination,@RequestParam(name="date") String date) {
     	//logger.debug("Registration called");
+    	List<trains> trainlist=trainService.getTrains(source, destination);
+    	model.addAttribute("trains",trainlist);
         return "Trainlist";
     }
     @RequestMapping(value = {"/payment"}, method = RequestMethod.GET)
@@ -99,5 +122,7 @@ public class UserController {
     	//logger.debug("Registration called");
         return "history";
     }
+    
+
     
 }

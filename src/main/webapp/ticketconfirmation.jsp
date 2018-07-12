@@ -100,10 +100,14 @@ e.printStackTrace();
 
 <br>
 <br>
-<a href="${contextPath}/welcome">Book a return ticket</a>
-
+<%-- <a href="${contextPath}/welcome">Book a return ticket</a> --%>
+<div id="trapParent"><a id="trap" href="${contextPath}/welcome">Book a return ticket</a></div>
 <script type="text/javascript">
 function myFun(){
+	if(localStorage.trip=="roundtrip")
+	{var parent = document.getElementById('trapParent');
+	var child = document.getElementById('trap');
+	parent.removeChild(child);}
 	
 }</script>
 </body>

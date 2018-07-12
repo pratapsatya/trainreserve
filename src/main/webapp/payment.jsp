@@ -77,7 +77,7 @@ input[type=submit]:hover {
   <option value="saab">lower berth</option>
   
 </select>
-  Window Seat:<input type="checkbox" id="myCheck" name="checked1"><br><br>
+ 
   
     <label for="fname" >First Name</label>
     <input type="text" id="fname" name="firstname2" placeholder="Your name.." onfocus="myFunction()" >
@@ -93,7 +93,7 @@ input[type=submit]:hover {
   <option value="saab">lower berth</option>
   
 </select>
-  Window Seat:<input type="checkbox" id="myCheck" name="checked2"><br><br>
+ 
   
     <label for="fname" >First Name</label>
     <input type="text" id="fname" name="firstname3" placeholder="Your name.." onfocus="myFunction()">
@@ -109,7 +109,7 @@ input[type=submit]:hover {
   <option value="saab">lower berth</option>
   
 </select>
-  Window Seat:<input type="checkbox" id="myCheck" name="checked3"><br><br>
+ 
   
     <label for="fname" >First Name</label>
     <input type="text" id="fname" name="firstname4" placeholder="Your name.." onfocus="myFunction()">
@@ -125,7 +125,7 @@ input[type=submit]:hover {
   <option value="saab">lower berth</option>
   
 </select>
-  Window Seat:<input type="checkbox" id="myCheck" name="checked4"><br><br>
+ 
   
   
   Card Details
@@ -141,7 +141,7 @@ input[type=submit]:hover {
  
 </div>
 <p id="error1"></p>
-
+<p id="error2"></p>
 </form>
 <script>
 function show(){
@@ -154,6 +154,7 @@ function myFunction(){
 	document.getElementById("date").value=localStorage.date;
 	document.getElementById("trainname").value=localStorage.trainname;
 	var z=document.getElementById("tn").value;
+	document.getElementById("error1").innerHTML=z;
 	if(z>localStorage.tickets)
 		{document.getElementById("error").innerHTML="choose tickets less than available";
 		return false;
@@ -166,6 +167,7 @@ function myFunction(){
 			{
 			document.getElementById("error1").innerHTML="enter fourth passenger details";
 			}
+		return false;
 	}
 	if(z==3){
 		var f4=document.getElementById("firstname3").value;
@@ -175,15 +177,18 @@ function myFunction(){
 			{
 			document.getElementById("error1").innerHTML="enter third passenger details";
 			}
+		return false;
 	}
-	if(z==2){
+	if(z=="2"){
 		var f4=document.getElementById("firstname2").value;
 		var l4=document.getElementById("lastname2").value;
 		var a4=document.getElementById("age2").value;
 		if(f4==null||l4==null||a4==null)
 			{
 			document.getElementById("error1").innerHTML="enter second passenger details";
+			return false;
 			}
+		document.getElementById("error2").innerHTML="2 passengers";
 	}
 	return true;
 	}

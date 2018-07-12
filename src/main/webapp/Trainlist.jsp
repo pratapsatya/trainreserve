@@ -31,34 +31,22 @@ tr:nth-child(even) {
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%
-String driverName = "com.mysql.jdbc.Driver";
-String connectionUrl = "jdbc:mysql://localhost:3306/";
-String dbName = "db_example";
-String userId = "lahari";
-String password = "Satya977";
-String source=request.getParameter("source");
-String destiny=request.getParameter("destiny");
+
 String date=request.getParameter("date");
 String y=date.substring(date.length()-2);
 int x=Integer.parseInt(y);
 x=x%7;
 y=String.valueOf(x);
-try {
-Class.forName(driverName);
-} catch (ClassNotFoundException e) {
-e.printStackTrace();
-}
+request.setAttribute("x",y);
 
-Connection connection = null;
-Statement statement = null;
-ResultSet resultSet = null;
 %>
  <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
         <h2>${contextPath} </h2>
-<form action="${contextPath}/payment" >
+
 <a onclick="document.forms['logoutForm'].submit()">Logout</a>
+<form action="${contextPath}/payment"  onsubmit="return validate()">
 <h2 align="center"><font><strong>List of Trains Available on</strong></font></h2>
 <h2 name="date"><% out.print(date); %></h2>
 <h2>Choose a train and continue</h2>
@@ -76,52 +64,51 @@ ResultSet resultSet = null;
 <td><b>Tickets available</b></td>
 </tr>
 
-<%
-try{ 
-connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
-statement=connection.createStatement();
-String sql ="SELECT * FROM trains where source='"+source+"' and destination='"+destiny+"' and day='"+y+"'";
 
+ 
+</table>
+<table id="mytable1">
+<c:forEach items="${trains}" var="item" >
+    <c:if test = "${item.day==x}">
 
-resultSet = statement.executeQuery(sql);
-
-while(resultSet.next()){
-	int i=0;
-%>
 <tr bgcolor="#DEB887" onclick="myFunc(this)">
-<td><%=resultSet.getString("trains_id") %></td>
-<td><%=resultSet.getString("trainnumber") %></td>
-<td><%=resultSet.getString("source") %></td>
-<td><%=resultSet.getString("destination") %></td>
-<td><%=resultSet.getString("trainname") %></td>
-<td><%=resultSet.getString("timings") %></td>
-<td><%=resultSet.getString("available") %></td>
+<td>${item.trains_id}</td>
+<td>${item.trainnumber} </td>
+<td>${item.source} </td>
+<td>${item.destination}</td>
+<td>${item.trainname} </td>
+<td>${item.timings} </td>
+<td>${item.available}</td>
 
 </tr>
-
-<% 
-}
-
-} catch (Exception e) {  
-e.printStackTrace();
-}
-%>
-</table> 
+</c:if>
+</c:forEach>
+</table>
 <input type="submit" value="choose train and continue">
+<p id="error"></p>
 </form>
 
 <script type="text/javascript">
 function myFunc(x){
 	
 		var y=x.rowIndex;
-		var z=document.getElementById("mytable").rows[y].cells["0"].innerHTML;
-		var p=document.getElementById("mytable").rows[y].cells["6"].innerHTML;
+		var z=document.getElementById("mytable1").rows[y].cells["0"].innerHTML;
+		var p=document.getElementById("mytable1").rows[y].cells["6"].innerHTML;
 		
 		localStorage.trainId=z;
-		localStorage.trainname=document.getElementById("mytable").rows[y].cells["4"].innerHTML;
+		localStorage.trainname=document.getElementById("mytable1").rows[y].cells["4"].innerHTML;
 		localStorage.tickets=p;
+		localStorage.valid=z;
 		/* window.location.assign("/payment") */
 }
+function validate()
+{
+	if(localStorage.trainId!=localStorage.valid)
+		{document.getElementById("error").innerHTML="select a train";
+		return false;}
+	localStorage.valid="0";
+	return true;
+	}
 
 </script>
 </body>

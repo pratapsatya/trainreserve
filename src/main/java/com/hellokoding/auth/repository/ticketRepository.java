@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.hellokoding.auth.model.tickets;
 
-public interface ticketRepository extends JpaRepository<tickets, String> {
+public interface ticketRepository extends JpaRepository<tickets, Integer> {
 	@Transactional
 	@Modifying(clearAutomatically=true)
 	@Query(value = "insert into tickets (uname,tickets, trainname, date) VALUES (?1, ?2, ?3, ?4)", nativeQuery = true)

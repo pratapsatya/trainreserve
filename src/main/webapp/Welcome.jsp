@@ -55,13 +55,13 @@
             </td>
 </tr>
 <tr>
-<td><select>
+<td><select id="trip">
   <option value="roundtrip">roundtrip</option>
   <option value="oneway">oneway</option>
 </select></td>
 </tr>
 <tr>
-<td><input type="date" id="myDate" name="date" value="2018-07-11" min="" max="" onfocus="myFunction1()">
+<td><input type="date" id="myDate" name="date" value="2018-07-12" min="" max="" onfocus="myFunction1()">
 </td>
 </tr>
 
@@ -83,8 +83,11 @@
      document.getElementById("myDate").min=y;
     var z=d.getFullYear()+"-0"+(d.getMonth()+1)+"-"+(d.getDate()+7);
     document.getElementById("myDate").max=z;
+    document.getElementById("myDate").value=y;
     var g=document.getElementById("myDate").value;
     localStorage.date=g;
+    var s=document.getElementById("trip");
+    localStorage.trip=s;
     
     }
 function myFunction() {
