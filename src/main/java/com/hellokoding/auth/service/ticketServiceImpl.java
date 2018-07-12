@@ -28,7 +28,7 @@ public class ticketServiceImpl implements ticketService {
 	public List<tickets> findByName(String uname) 
 	{
 		
-		List<tickets> ticket = ticketRepository.findByName(uname); 
+		List<tickets> ticket = ticketRepository.findByUname(uname); 
 		return ticket;
 	}
 	

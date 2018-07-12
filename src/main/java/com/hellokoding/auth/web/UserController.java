@@ -1,6 +1,7 @@
 package com.hellokoding.auth.web;
 
 import com.hellokoding.auth.model.User;
+import com.hellokoding.auth.model.tickets;
 import com.hellokoding.auth.repository.TrainRepository;
 import com.hellokoding.auth.service.SecurityService;
 import com.hellokoding.auth.service.TrainService;
@@ -8,6 +9,7 @@ import com.hellokoding.auth.service.UserService;
 import com.hellokoding.auth.service.ticketService;
 import com.hellokoding.auth.validator.UserValidator;
 
+import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -110,16 +112,19 @@ public class UserController {
         return "payment";
     }
     @RequestMapping(value = {"/ticketconfirmation"}, method = RequestMethod.POST)
-    public String TicketConfirmation(Model model,@RequestParam(name="username") String name,@RequestParam(name="nooftickets") String tickets,@RequestParam(name="trainname") String tname,@RequestParam(name="date") String date) throws ParseException {
+    public String TicketConfirmation(Model model,Principal p,@RequestParam(name="nooftickets") String tickets,@RequestParam(name="trainname") String tname,@RequestParam(name="date") String date) throws ParseException {
     	//logger.debug("Registration called");
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
         Date startDate = sdf.parse(date);
+        String name=p.getName();
     	tkService.insertData(name,tickets,tname,startDate);
         return "ticketconfirmation";
     }
     @RequestMapping(value = {"/history"}, method = RequestMethod.GET)
-    public String History(Model model) {
+    public String History(Model model,Principal p) {
     	//logger.debug("Registration called");
+    	List<tickets> list=tkService.findByName(p.getName());
+    	model.addAttribute("list", list);
         return "history";
     }
     

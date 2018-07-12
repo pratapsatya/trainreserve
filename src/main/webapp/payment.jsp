@@ -125,6 +125,12 @@ input[type=submit]:hover {
   <option value="saab">lower berth</option>
   
 </select>
+<select id="type">
+    
+  <option value="ac">ac-200</option>
+  <option value="general">general-150</option>
+  
+</select>
  
   
   
@@ -154,7 +160,7 @@ function myFunction(){
 	document.getElementById("date").value=localStorage.date;
 	document.getElementById("trainname").value=localStorage.trainname;
 	var z=document.getElementById("tn").value;
-	document.getElementById("error1").innerHTML=z;
+	
 	if(z>localStorage.tickets)
 		{document.getElementById("error").innerHTML="choose tickets less than available";
 		return false;

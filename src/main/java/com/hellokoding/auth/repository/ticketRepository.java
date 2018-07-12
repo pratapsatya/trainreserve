@@ -17,5 +17,5 @@ public interface ticketRepository extends JpaRepository<tickets, Integer> {
 	@Query(value = "insert into tickets (uname,tickets, trainname, date) VALUES (?1, ?2, ?3, ?4)", nativeQuery = true)
 	void insertData(String uname,String tickets, String tname, Date date);
 	
-	List<tickets> findByName(String uname);
+	List<tickets> findByUname(String uname);
 }

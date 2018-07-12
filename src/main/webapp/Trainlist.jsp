@@ -26,10 +26,7 @@ tr:nth-child(even) {
 
 </head>
 <body>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.Connection"%>
+
 <%
 
 String date=request.getParameter("date");
@@ -106,7 +103,7 @@ function validate()
 	if(localStorage.trainId!=localStorage.valid)
 		{document.getElementById("error").innerHTML="select a train";
 		return false;}
-	localStorage.valid="0";
+	localStorage.valid="-3";
 	return true;
 	}
 
