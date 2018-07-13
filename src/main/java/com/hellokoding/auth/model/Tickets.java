@@ -12,7 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
 @Table(name="tickets")
-public class tickets {
+public class Tickets {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id")
@@ -47,6 +47,8 @@ public class tickets {
 	public void setTrainname(String trainname) {
 		this.trainname = trainname;
 	}
+	
+	
 	public String getTickets() {
 		return tickets;
 	}
@@ -59,6 +61,8 @@ public class tickets {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	
+	
 	
 
 }

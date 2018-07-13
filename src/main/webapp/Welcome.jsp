@@ -35,7 +35,7 @@
          <table>
 <tr>
 <td>From:</td><td> 
-<input list="from" id="source" name="source">
+<input list="from" id="source" name="source" onfocus="myFunction1()">
 <datalist id="from">
 <option value="hyderabad">
 <option value="tirupathi">
@@ -87,7 +87,8 @@
     var g=document.getElementById("myDate").value;
     localStorage.date=g;
     var s=document.getElementById("trip");
-    localStorage.trip=s;
+    localStorage.trip=s.value;
+    
     
     }
 function myFunction() {

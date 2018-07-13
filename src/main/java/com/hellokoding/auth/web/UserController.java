@@ -1,12 +1,12 @@
 package com.hellokoding.auth.web;
 
 import com.hellokoding.auth.model.User;
-import com.hellokoding.auth.model.tickets;
-import com.hellokoding.auth.repository.TrainRepository;
+import com.hellokoding.auth.model.Tickets;
+
 import com.hellokoding.auth.service.SecurityService;
 import com.hellokoding.auth.service.TrainService;
 import com.hellokoding.auth.service.UserService;
-import com.hellokoding.auth.service.ticketService;
+import com.hellokoding.auth.service.TicketService;
 import com.hellokoding.auth.validator.UserValidator;
 
 import java.security.Principal;
@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-//import org.hibernate.annotations.common.util.impl.Log_.logger;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +26,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.hellokoding.auth.model.trains;
+import com.hellokoding.auth.model.Trains;
 
 @Controller
 public class UserController {
-	//private static final Logger logger = LoggerFactory.getLogger(UserController.class);	 
+		 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private UserService userService;
@@ -42,13 +42,13 @@ public class UserController {
     private UserValidator userValidator;
     
     @Autowired
-    private ticketService tkService;
+    private TicketService tkService;
     @Autowired 
 	private TrainService trainService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
-    	//logger.debug("Registration called");
+    	
         model.addAttribute("userForm", new User());
         log.debug("debug level log");
         log.info("info level log");
@@ -59,7 +59,7 @@ public class UserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-    	//logger.debug("Registration called");
+    	
     	userValidator.validate(userForm, bindingResult);
     	 log.debug("debug level log");
     	    log.info("info level log");
@@ -78,7 +78,7 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
-    	//logger.debug("Registration called");
+    	
     	 log.debug("debug level log");
     	    log.info("info level log");
     	    log.error("error level log");
@@ -96,24 +96,24 @@ public class UserController {
     	 log.debug("debug level log");
     	    log.info("info level log");
     	    log.error("error level log");
-    	//logger.debug("Registration called");
+    	
     	return "Welcome";
     }
     @RequestMapping(value = {"/trains"}, method = RequestMethod.POST)
-    public String Trains(Model model,@RequestParam(name="source") String source,@RequestParam(name="destiny") String destination,@RequestParam(name="date") String date) {
-    	//logger.debug("Registration called");
-    	List<trains> trainlist=trainService.getTrains(source, destination);
+    public String trains(Model model,@RequestParam(name="source") String source,@RequestParam(name="destiny") String destination,@RequestParam(name="date") String date) {
+    	
+    	List<Trains> trainlist=trainService.getTrains(source, destination);
     	model.addAttribute("trains",trainlist);
         return "Trainlist";
     }
     @RequestMapping(value = {"/payment"}, method = RequestMethod.GET)
-    public String Payment(Model model) {
-    	//logger.debug("Registration called");
+    public String payment(Model model) {
+    	
         return "payment";
     }
     @RequestMapping(value = {"/ticketconfirmation"}, method = RequestMethod.POST)
-    public String TicketConfirmation(Model model,Principal p,@RequestParam(name="nooftickets") String tickets,@RequestParam(name="trainname") String tname,@RequestParam(name="date") String date) throws ParseException {
-    	//logger.debug("Registration called");
+    public String ticketConfirmation(Model model,Principal p,@RequestParam(name="nooftickets") String tickets,@RequestParam(name="trainname") String tname,@RequestParam(name="date") String date) throws ParseException {
+    	
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
         Date startDate = sdf.parse(date);
         String name=p.getName();
@@ -121,9 +121,9 @@ public class UserController {
         return "ticketconfirmation";
     }
     @RequestMapping(value = {"/history"}, method = RequestMethod.GET)
-    public String History(Model model,Principal p) {
-    	//logger.debug("Registration called");
-    	List<tickets> list=tkService.findByName(p.getName());
+    public String history(Model model,Principal p) {
+    	
+    	List<Tickets> list=tkService.findByName(p.getName());
     	model.addAttribute("list", list);
         return "history";
     }

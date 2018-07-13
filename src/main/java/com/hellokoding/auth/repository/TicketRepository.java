@@ -9,13 +9,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.hellokoding.auth.model.tickets;
+import com.hellokoding.auth.model.Tickets;
 
-public interface ticketRepository extends JpaRepository<tickets, Integer> {
+public interface TicketRepository extends JpaRepository<Tickets, Integer> {
 	@Transactional
 	@Modifying(clearAutomatically=true)
 	@Query(value = "insert into tickets (uname,tickets, trainname, date) VALUES (?1, ?2, ?3, ?4)", nativeQuery = true)
 	void insertData(String uname,String tickets, String tname, Date date);
 	
-	List<tickets> findByUname(String uname);
+	List<Tickets> findByUname(String uname);
 }

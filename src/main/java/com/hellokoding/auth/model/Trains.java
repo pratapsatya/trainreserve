@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="trains")
-public class trains {
+public class Trains {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int trains_id;
@@ -80,5 +80,6 @@ public class trains {
 	public void setTrainname(String trainname) {
 		this.trainname = trainname;
 	}
+	
 	
 }

@@ -40,8 +40,7 @@ request.setAttribute("x",y);
  <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-        <h2>${contextPath} </h2>
-
+        
 <a onclick="document.forms['logoutForm'].submit()">Logout</a>
 <form action="${contextPath}/payment"  onsubmit="return validate()">
 <h2 align="center"><font><strong>List of Trains Available on</strong></font></h2>

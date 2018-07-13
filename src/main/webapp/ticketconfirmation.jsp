@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>view ticket</title>
 </head>
-<body>
+<body onload="myFun()">
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -100,14 +100,12 @@ e.printStackTrace();
 
 <br>
 <br>
-<%-- <a href="${contextPath}/welcome">Book a return ticket</a> --%>
-<div id="trapParent"><a id="trap" href="${contextPath}/welcome">Book a return ticket</a></div>
+ <a href="${contextPath}/welcome">Book a return ticket</a>
+
 <script type="text/javascript">
 function myFun(){
 	if(localStorage.trip=="roundtrip")
-	{var parent = document.getElementById('trapParent');
-	var child = document.getElementById('trap');
-	parent.removeChild(child);}
+	{alert("Book your return ticket");}
 	
 }</script>
 </body>

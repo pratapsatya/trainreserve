@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.hellokoding.auth.model.tickets;
-import com.hellokoding.auth.repository.ticketRepository;
+import com.hellokoding.auth.model.Tickets;
+import com.hellokoding.auth.repository.TicketRepository;
 
 @Service
 @Component
-public class ticketServiceImpl implements ticketService {
+public class TicketServiceImpl implements TicketService {
 	@Autowired 
-	private ticketRepository ticketRepository;
+	private TicketRepository ticketRepository;
 	
 	@Override
 	public void insertData(String uname,String tickets,String tname,Date date)
@@ -25,11 +25,11 @@ public class ticketServiceImpl implements ticketService {
 		
 	}
 	@Override
-	public List<tickets> findByName(String uname) 
+	public List<Tickets> findByName(String uname) 
 	{
 		
-		List<tickets> ticket = ticketRepository.findByUname(uname); 
-		return ticket;
+		return ticketRepository.findByUname(uname); 
+		
 	}
 	
 }
