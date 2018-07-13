@@ -136,7 +136,7 @@ input[type=submit]:hover {
   
   Card Details
   <input type="text" id="accnum" name="accnum" placeholder="Your card number.." required>
-  <input type="number" id="csv" name="cvv" placeholder="cvv.." required>
+  <input type="number" id="csv" name="cvv" placeholder="cvv.." min="100" max="999" required>
   Expiry:
 <input type="month" id="expiry" name="expiry" placeholder="mm/yyyy" required>  
 <input type="hidden" name="trainId" id="trainid">

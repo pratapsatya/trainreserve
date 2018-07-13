@@ -46,7 +46,19 @@ public class User {
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
     }
+    public User() {
+		super();
+	}
 
+	public User(String username) {
+		super();
+		
+		this.username = username;
+		
+	}
+	
+
+	
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     public Set<Role> getRoles() {

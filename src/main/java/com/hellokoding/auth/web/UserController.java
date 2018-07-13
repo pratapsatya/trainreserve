@@ -45,14 +45,18 @@ public class UserController {
     private TicketService tkService;
     @Autowired 
 	private TrainService trainService;
+    
+    private String debug="debug level log";
+    private String info="info level log";
+    private String error="error level log";
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
     	
         model.addAttribute("userForm", new User());
-        log.debug("debug level log");
-        log.info("info level log");
-        log.error("error level log");
+        log.debug(debug);
+        log.info(info);
+        log.error(error);
 
         return "registration";
     }
@@ -61,9 +65,9 @@ public class UserController {
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
     	
     	userValidator.validate(userForm, bindingResult);
-    	 log.debug("debug level log");
-    	    log.info("info level log");
-    	    log.error("error level log");
+    	log.debug(debug);
+        log.info(info);
+        log.error(error);
 
         if (bindingResult.hasErrors()) {
             return "registration";
@@ -79,9 +83,9 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
     	
-    	 log.debug("debug level log");
-    	    log.info("info level log");
-    	    log.error("error level log");
+    	log.debug(debug);
+        log.info(info);
+        log.error(error);
     	if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
 
@@ -93,10 +97,9 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
-    	 log.debug("debug level log");
-    	    log.info("info level log");
-    	    log.error("error level log");
-    	
+    	log.debug(debug);
+        log.info(info);
+        log.error(error);
     	return "Welcome";
     }
     @RequestMapping(value = {"/trains"}, method = RequestMethod.POST)
