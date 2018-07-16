@@ -4,8 +4,7 @@ package auth;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
-
-
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -85,6 +84,29 @@ public class UserControllerTest extends AbstractControllerTest {
       .andExpect(authenticated());
       
       }
+     
+    	  @Test
+    	  	public void testUserLoginSuccess() throws Exception {
+    	    	mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8090/login")
+    	  	            .param("username", "lahari")
+    	  	            .param("password", "Satya@977"))
+    	  		        .andDo(print())
+    	  	            .andExpect(redirectedUrl("/"));	
+    	  	    		 
+    	      } 
+    	 /* @Test
+  	  	public void testUserWelcome() throws Exception {
+  	    	mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8090/welcome")
+  	  	            .param("username", "lahari")
+  	  	            .param("password", "Satya@977"))
+   	  		        .andDo(print())
+  	  	            .andExpect(redirectedUrl("/trains"));	
+  	    	param("source","hyderabad")
+    		  .param("destiny","tirupathi")
+    		.param("date","13-07-2018"))
+  	  	    		 
+  	      } */
+
 
 
 }

@@ -109,21 +109,21 @@ public class UserController {
     	model.addAttribute("trains",trainlist);
         return "Trainlist";
     }
-    @RequestMapping(value = {"/payment"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/payment"})
     public String payment(Model model) {
     	
         return "payment";
     }
     @RequestMapping(value = {"/ticketconfirmation"}, method = RequestMethod.POST)
     public String ticketConfirmation(Model model,Principal p,@RequestParam(name="nooftickets") String tickets,@RequestParam(name="trainname") String tname,@RequestParam(name="date") String date) throws ParseException {
-    	
+    	/*
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-        Date startDate = sdf.parse(date);
+        Date startDate = sdf.parse(date);*/
         String name=p.getName();
-    	tkService.insertData(name,tickets,tname,startDate);
+    	tkService.insertData(name,tickets,tname,date);
         return "ticketconfirmation";
     }
-    @RequestMapping(value = {"/history"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/history"})
     public String history(Model model,Principal p) {
     	
     	List<Tickets> list=tkService.findByName(p.getName());

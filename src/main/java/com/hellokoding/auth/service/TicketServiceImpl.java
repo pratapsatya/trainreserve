@@ -18,7 +18,7 @@ public class TicketServiceImpl implements TicketService {
 	private TicketRepository ticketRepository;
 	
 	@Override
-	public void insertData(String uname,String tickets,String tname,Date date)
+	public void insertData(String uname,String tickets,String tname,String date)
 	{
 		
 		ticketRepository.insertData(uname,tickets,tname,date); 

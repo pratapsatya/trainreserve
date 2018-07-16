@@ -95,7 +95,7 @@ function myFunc(x){
 		localStorage.trainname=document.getElementById("mytable1").rows[y].cells["4"].innerHTML;
 		localStorage.tickets=p;
 		localStorage.valid=z;
-		/* window.location.assign("/payment") */
+		 window.location.assign("payment") 
 }
 function validate()
 {
