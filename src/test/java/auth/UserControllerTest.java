@@ -6,11 +6,14 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +26,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.hellokoding.auth.model.Trains;
+import com.hellokoding.auth.service.TrainService;
 
+import junit.framework.Assert;
 
 import javax.servlet.Filter;
 
@@ -32,7 +38,8 @@ import javax.servlet.Filter;
 @Transactional
 public class UserControllerTest extends AbstractControllerTest {
 	
-
+	@Autowired 
+	private TrainService trainService;
 
     @Autowired
     private WebApplicationContext context;
@@ -104,14 +111,40 @@ public class UserControllerTest extends AbstractControllerTest {
     	  
     	  
     		  @Test
-    		  
-    		  	public void testgetwelcomeSuccess() throws Exception {
-    		  	  mockMvc.perform(get("/payment")/*.param("name","nametosend")*/)
+      		  	public void testgetwelcomeSuccess() throws Exception {
+    		  	  mockMvc.perform(get("/welcome"))
     		     .andExpect(status().isOk())
     		    .andDo(print())
-    		       		    .andExpect(view().name("payment"));
+    		       		    .andExpect(view().name("Welcome"));
     		    
     		    }   
+    		  @Test
+    		  	public void testgetpaymentSuccess() throws Exception {
+  		  	  mockMvc.perform(get("/payment"))
+  		     .andExpect(status().isOk())
+  		    .andDo(print())
+  		       		    .andExpect(view().name("payment"));
+  		    
+  		    }
+    		  @Test
+    		  	public void testgethistorySuccess() throws Exception {
+  		  	  mockMvc.perform(get("/history"))
+  		     .andExpect(status().isOk())
+  		    .andDo(print())
+  		       		    .andExpect(view().name("history"));
+  		    
+  		    }   
+    		  @Test
+    		  	public void testgettrainsSuccess() throws Exception {
+    			  
+    			  List<Trains> trainlist=trainService.getTrains("hyderabad", "tirupathi");
+  		  	  mockMvc.perform(post("/trains").param("source","hyderabad").param("destiny","tirupathi").param("date","2018-07-17"))
+  		     .andExpect(status().isOk())
+  		    		.andExpect(model().attribute("trains", trainlist))
+  		    .andDo(print())
+  		       		    .andExpect(view().name("Trainlist"));
+  		  	 Assert.assertNotNull("failure- expected entitiy", trainlist);
+  		    }   
 
     	
 
