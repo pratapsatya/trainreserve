@@ -116,9 +116,7 @@ public class UserController {
     }
     @RequestMapping(value = {"/ticketconfirmation"}, method = RequestMethod.POST)
     public String ticketConfirmation(Model model,Principal p,@RequestParam(name="nooftickets") String tickets,@RequestParam(name="trainname") String tname,@RequestParam(name="date") String date) throws ParseException {
-    	/*
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-        Date startDate = sdf.parse(date);*/
+    	
         String name=p.getName();
     	tkService.insertData(name,tickets,tname,date);
         return "ticketconfirmation";

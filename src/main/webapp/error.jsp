@@ -12,8 +12,8 @@
 </head>
 <body>
 <h2>Something went wrong ...... Sorry for inconvenience</h2>
-<form action="${contextPath}/login" >
-<input type="submit" value="go to login">
+<form action="${contextPath}/welcome" >
+<input type="submit" value="go to homepage">
 </form>
 </body>
 </html> 

@@ -21,7 +21,7 @@ String connectionUrl = "jdbc:mysql://localhost:3306/";
 String dbName = "db_example";
 String userId = "lahari";
 String password = "Satya977";
- String num=request.getParameter("trainId"); 
+String num=request.getParameter("trainId"); 
 String fname1=request.getParameter("firstname1");
 String lname1=request.getParameter("lastname1");
 String age1=request.getParameter("age1");
@@ -35,12 +35,13 @@ String fname4=request.getParameter("firstname4");
 String lname4=request.getParameter("lastname4");
 String age4=request.getParameter("age4");
 String tno=request.getParameter("nooftickets");
-String uname=request.getParameter("username");
 String date=request.getParameter("date");
+
 int g=0;
 int id=Integer.parseInt(num);
 int count=Integer.parseInt(tno);
 boolean p;
+
 try {
 Class.forName(driverName);
 } catch (ClassNotFoundException e) {
@@ -65,10 +66,12 @@ ResultSet resultSet = null;
 <tr><td><%=fname3%></td><td><%=lname3%></td><td><%=age3%><td></td></tr>
 <tr><td><%=fname4%></td><td><%=lname4%></td><td><%=age4%><td></td></tr>
 </table>
+
 <div align="center">Train Details</div>
 <table align="center" cellpadding="5" cellspacing="5" border="1" id="mytable">
 
 <%
+
 try{ 
 connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
 statement=connection.createStatement();
@@ -87,7 +90,7 @@ while(resultSet.next()){
 <tr><td>Destination:</td><td><%=resultSet.getString("destination") %></td></tr>
 <tr><td>Train Name:</td><td><%=resultSet.getString("trainname") %></td></tr>
 <tr><td>Timings:</td><td><%=resultSet.getString("timings") %></td></tr>
-<tr><td>Seat Number:</td><td>10</td></tr>
+
 <% 
 }
 
@@ -95,6 +98,8 @@ while(resultSet.next()){
 e.printStackTrace();
 }
 %>
+
+<tr><td>tickets booked</td><td><%=count%></td></tr>
 <tr><td>date:</td><td><%=date%></td></tr>
 </table>
 
@@ -103,10 +108,18 @@ e.printStackTrace();
  <a href="${contextPath}/welcome">Book a return ticket</a>
 
 <script type="text/javascript">
-function myFun(){
-	if(localStorage.trip=="roundtrip")
-	{alert("Book your return ticket");}
+function myFun()
+{
+	var x=localStorage.trip;
+	if(x==="roundtrip")
+	{
+		
+		console.log("var"+x);
+		alert("Book your return ticket");
+		
+	}
 	
-}</script>
+}
+</script>
 </body>
 </html>

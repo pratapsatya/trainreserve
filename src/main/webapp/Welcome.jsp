@@ -25,83 +25,121 @@
 <div class="container">
 
     <c:if test="${pageContext.request.userPrincipal.name != null}">
-        <form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
+ <form id="logoutForm" method="POST" action="${contextPath}/logout">
+     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+ </form>
 
-        <h2>Welcome ${pageContext.request.userPrincipal.name}....Planning for a Vacataion....!Then why to wait...Book your Tickets | <a onclick="document.forms['logoutForm'].submit()">Logout</a>|<a href="${contextPath}/history">History</a></h2>
-       <form method="POST" action="${contextPath}/trains" onsubmit="return myFunction()">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-         <table>
+ <h2>Welcome ${pageContext.request.userPrincipal.name}....Planning for a Vacataion....!Then why to wait...Book your Tickets | <a onclick="document.forms['logoutForm'].submit()">Logout</a>|<a href="${contextPath}/history">History</a></h2>
+      
+ <form method="POST" action="${contextPath}/trains" onsubmit="return validate()">
+      
+ <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+     
+<table>
 <tr>
-<td>From:</td><td> 
-<input list="from" id="source" name="source" onfocus="myFunction1()">
+
+<td>From:</td>
+
+<td> 
+<input list="from" id="source" name="source" onfocus="getDate()">
 <datalist id="from">
 <option value="hyderabad">
 <option value="tirupathi">
 <option value="vijayawada">
 </datalist>
+</td>
 
-            </td>
-            </tr>
-            <tr>
-<td>To:</td> <td><input list="to" id="destiny" name="destiny">
+</tr>
+           
+<tr>
+
+<td>To:</td> 
+
+<td><input list="to" id="destiny" name="destiny">
 <datalist id="to">
 <option value="hyderabad">
 <option value="tirupathi">
 <option value="vijayawada">
 </datalist>
+</td>
 
-            </td>
 </tr>
+
 <tr>
-<td><select id="trip">
-  <option value="roundtrip">roundtrip</option>
+
+<td>
+<select id="trip" onblur="details()">
   <option value="oneway">oneway</option>
-</select></td>
-</tr>
-<tr>
-<td><input type="date" id="myDate" name="date" value="2018-07-12" min="" max="" onfocus="myFunction1()">
+  <option value="roundtrip">roundtrip</option>
+</select>
 </td>
 </tr>
 
-         </table> 
-         <input type="submit" value="Search Trains">
+<tr>
+
+<td><input type="date" id="myDate" name="date" value="2018-07-12" min="" max="" >
+</td>
+
+</tr>
+
+</table> 
+
+<input type="submit" value="Search Trains">
+
 </form>
-    </c:if>
+
+</c:if>
 
 </div>
 
 
-<p id="error2">
-</p>
+<p id="error2"></p>
 <!-- /container -->
 <script>
-    function myFunction1(){
-        var d=new Date();
-    var y=d.getFullYear()+"-0"+(d.getMonth()+1)+"-"+d.getDate();
-     document.getElementById("myDate").min=y;
-    var z=d.getFullYear()+"-0"+(d.getMonth()+1)+"-"+(d.getDate()+7);
-    document.getElementById("myDate").max=z;
-    document.getElementById("myDate").value=y;
-    var g=document.getElementById("myDate").value;
-    localStorage.date=g;
+function getDate()
+{
+	    var d=new Date();
+	    var y=d.getFullYear()+"-0"+(d.getMonth()+1)+"-"+d.getDate();   
+	    var z=d.getFullYear()+"-0"+(d.getMonth()+1)+"-"+(d.getDate()+7);
+	    
+	    
+	    document.getElementById("myDate").min=y;
+	    document.getElementById("myDate").max=z; 
+	    document.getElementById("myDate").value=y;
+	   
+}
+    
+function details()
+{
+       
+   
     var s=document.getElementById("trip");
     localStorage.trip=s.value;
+    console.log("trip is"+localStorage.trip);
+ 
     
-    
-    }
-function myFunction() {
+}
+function validate() 
+{
+	 
+	
+	    var g=document.getElementById("myDate").value;
+	    localStorage.date=g;  
+	  
 	  var s=document.getElementById("source").value;
 	  var d=document.getElementById("destiny").value;
+	  
 	  if(s==""||d=="")
 		  {
-		  document.getElementById("error2").innerHTML="source and destination cant be empty";
-		  return false;
+			  document.getElementById("error2").innerHTML="source and destination cant be empty";
+			  return false;
 		  }
 	  if(s===d)
-	  { document.getElementById("error2").innerHTML="source and destination cant be same";
-	  return false;}
+	      {  
+		  
+		     document.getElementById("error2").innerHTML="source and destination cant be same";
+	         return false;
+	      }
 	  
 	  
 }

@@ -2,8 +2,10 @@ package auth;
 
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.testSecurityContext;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -13,6 +15,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -24,10 +28,11 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.servlet.Filter;
 
 
-
+@WithMockUser
 @Transactional
 public class UserControllerTest extends AbstractControllerTest {
 	
+
 
     @Autowired
     private WebApplicationContext context;
@@ -39,7 +44,9 @@ public class UserControllerTest extends AbstractControllerTest {
       mockMvc = MockMvcBuilders
               .webAppContextSetup(context)
               .addFilters(springSecurityFilterChain)
+              .defaultRequest(get("/").with(testSecurityContext()))
               .build();
+      //this.authentication = new UsernamePasswordAuthenticationToken("lahari", "Satya@977");
     }
 
     @Test
@@ -94,18 +101,19 @@ public class UserControllerTest extends AbstractControllerTest {
     	  	            .andExpect(redirectedUrl("/"));	
     	  	    		 
     	      } 
-    	 /* @Test
-  	  	public void testUserWelcome() throws Exception {
-  	    	mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8090/welcome")
-  	  	            .param("username", "lahari")
-  	  	            .param("password", "Satya@977"))
-   	  		        .andDo(print())
-  	  	            .andExpect(redirectedUrl("/trains"));	
-  	    	param("source","hyderabad")
-    		  .param("destiny","tirupathi")
-    		.param("date","13-07-2018"))
-  	  	    		 
-  	      } */
+    	  
+    	  
+    		  @Test
+    		  
+    		  	public void testgetwelcomeSuccess() throws Exception {
+    		  	  mockMvc.perform(get("/payment"))
+    		     .andExpect(status().isOk())
+    		    .andDo(print())
+    		       		    .andExpect(view().name("payment"));
+    		    
+    		    }   
+
+    	
 
 
 

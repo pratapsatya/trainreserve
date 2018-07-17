@@ -37,19 +37,18 @@ y=String.valueOf(x);
 request.setAttribute("x",y);
 
 %>
- <form id="logoutForm" method="POST" action="${contextPath}/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
-        
+ <form id="logoutForm" method="POST" action="${contextPath}/logout">        
+ <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+ </form>
 <a onclick="document.forms['logoutForm'].submit()">Logout</a>
+
+
 <form action="${contextPath}/payment"  onsubmit="return validate()">
 <h2 align="center"><font><strong>List of Trains Available on</strong></font></h2>
 <h2 name="date"><% out.print(date); %></h2>
 <h2>Choose a train and continue</h2>
 <table align="center" cellpadding="5" cellspacing="5" border="1" id="mytable">
-<tr>
 
-</tr>
 <tr bgcolor="#A52A2A">
 <td><b>Train Id</b></td>
 <td><b>Train Number</b></td>
@@ -63,11 +62,13 @@ request.setAttribute("x",y);
 
  
 </table>
+
 <table id="mytable1">
+
 <c:forEach items="${trains}" var="item" >
     <c:if test = "${item.day==x}">
 
-<tr bgcolor="#DEB887" onclick="myFunc(this)">
+<tr bgcolor="#DEB887" onclick="get(this)">
 <td>${item.trains_id}</td>
 <td>${item.trainnumber} </td>
 <td>${item.source} </td>
@@ -77,15 +78,18 @@ request.setAttribute("x",y);
 <td>${item.available}</td>
 
 </tr>
-</c:if>
+    </c:if>
 </c:forEach>
+
 </table>
+
 <input type="submit" value="choose train and continue">
+
 <p id="error"></p>
 </form>
 
 <script type="text/javascript">
-function myFunc(x){
+function get(x){
 	
 		var y=x.rowIndex;
 		var z=document.getElementById("mytable1").rows[y].cells["0"].innerHTML;
@@ -95,16 +99,19 @@ function myFunc(x){
 		localStorage.trainname=document.getElementById("mytable1").rows[y].cells["4"].innerHTML;
 		localStorage.tickets=p;
 		localStorage.valid=z;
+		
 		 window.location.assign("payment") 
 }
 function validate()
 {
 	if(localStorage.trainId!=localStorage.valid)
-		{document.getElementById("error").innerHTML="select a train";
-		return false;}
+	{
+		document.getElementById("error").innerHTML="select a train";
+		return false;
+    }
 	localStorage.valid="-3";
 	return true;
-	}
+}
 
 </script>
 </body>
