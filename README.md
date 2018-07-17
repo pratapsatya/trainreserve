@@ -3,7 +3,7 @@
 ## Guide
 https://github.com/pratapsatya/trainreserve.git
 ## Prerequisites
-- JDK 1.7 or later
+- JDK 1.8 or later
 - Maven 3 or later
 
 ## Stack
@@ -31,6 +31,21 @@ The user should have MySQL database and a “trains” table with data in it.
 
 Run in MySQL
 
+create a database and grant permissions on that:
+
+create database db_example;
+create user 'testuser'@'localhost' identified by 'password';
+grant all on testdb.* to 'testuser'@'localhost';
+
+
+Give these details in "application.proprties" file
+
+
+
+
+
+use db_example;
+
 CREATE TABLE `trains` (
 `trains_id` int(20) unsigned NOT NULL AUTO_INCREMENT,
 `trainnumber` varchar(20) DEFAULT NULL,
@@ -46,25 +61,26 @@ PRIMARY KEY (`trains_id`)
 
 INSERT INTO `trains` (`trainnumber`,`source`,`destination`,`timings`,`trainname`,`day`,`available`)
 VALUES
-('762128','vijayawada','tirupathi','09.00pm-20.15pm','vijayawadaExpress','0','10');
+('762128','vijayawada','tirupathi','09.00pm-20.15pm','vijayawadaExpress','0','9');
 INSERT INTO `trains` (`trainnumber` ,`source`,`destination`,`timings`,`trainname`,`day`,`available`)
 VALUES
-('762525','vijayawada','tirupathi','10.00am-14.15pm','tirupathipassenger','1','10');
+('762525','vijayawada','tirupathi','10.00am-14.15pm','tirupathipassenger','1','9');
 INSERT INTO `trains` (`trainnumber`,`source`,`destination`,`timings`,`trainname`,`day`,`available`)
 VALUES
-('762523',''vijayawada','tirupathi','13.00pm-18.15pm','tirupathibejawadasuperfast','2','10');
+('762523',''vijayawada','tirupathi','13.00pm-18.15pm','tirupathibejawadasuperfast','2','9');
 INSERT INTO `trains` (`trainnumber` ,`source`,`destination`,`timings`,`trainname`,`day`,`available`)
 VALUES
-('762529','vijayawada','tirupathi','21.00pm-3.15am','vijayawadatirupathisuperfast','3','10');
+('762529','vijayawada','tirupathi','21.00pm-3.15am','vijayawadatirupathisuperfast','3','9');
 INSERT INTO `trains` (`trainnumber` ,`source`,`destination`,`timings`,`trainname`,`day`,`available`)
 VALUES
-('762328','vijayawada','tirupathi','17.50pm-2.35am','bejawadatirupathi','4','10');
+('762328','vijayawada','tirupathi','17.50pm-2.35am','bejawadatirupathi','4','9');
 INSERT INTO `trains` (`trainnumber` ,`source`,`destination`,`timings`,`trainname`,`day`,`available`)
 VALUES
-('768328','vijayawada','tirupathi','14.50pm-5.35am','hyderabadtirupathi','5','10');
+('768328','vijayawada','tirupathi','14.50pm-5.35am','hyderabadtirupathi','5','9');
 INSERT INTO `trains` (`trainnumber` ,`source`,`destination`,`timings`,`trainname`,`day`,`available`)
 VALUES
-('769328','vijayawada','tirupathi','17.50pm-12.35am','tirupathisuperfast','6','10');
+('269328','vijayawada','tirupathi','17.50pm-12.35am','tirupathisuperfast','6','9');
+
 
 
 

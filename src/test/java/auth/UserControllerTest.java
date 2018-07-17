@@ -106,7 +106,7 @@ public class UserControllerTest extends AbstractControllerTest {
     		  @Test
     		  
     		  	public void testgetwelcomeSuccess() throws Exception {
-    		  	  mockMvc.perform(get("/payment"))
+    		  	  mockMvc.perform(get("/payment")/*.param("name","nametosend")*/)
     		     .andExpect(status().isOk())
     		    .andDo(print())
     		       		    .andExpect(view().name("payment"));
