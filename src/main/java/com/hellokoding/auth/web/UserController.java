@@ -116,8 +116,15 @@ public class UserController {
     }
     @RequestMapping(value = {"/ticketconfirmation"}, method = RequestMethod.POST)
     public String ticketConfirmation(Model model,Principal p,@RequestParam(name="nooftickets") String tickets,@RequestParam(name="trainname") String tname,@RequestParam(name="date") String date) throws ParseException {
-    	
-        String name=p.getName();
+    	String name=p.getName();
+    	/*Tickets t=new Tickets();
+		Date d=new Date();
+		t.setDate(date);
+		t.setTickets(tickets);
+		t.setTrainname(tname);
+		t.setUname(name);
+		tkService.save(t);*/
+        
     	tkService.insertData(name,tickets,tname,date);
         return "ticketconfirmation";
     }

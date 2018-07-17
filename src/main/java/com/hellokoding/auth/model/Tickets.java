@@ -35,6 +35,7 @@ public class Tickets {
 	}
 	
 	
+	
 	public String getUname() {
 		return uname;
 	}
@@ -62,7 +63,16 @@ public class Tickets {
 		this.date = date;
 	}
 	
-	
-	
+	public Tickets(int id, String uname, String trainname, String tickets, Date date) {
+		super();
+		this.id = id;
+		this.uname = uname;
+		this.trainname = trainname;
+		this.tickets = tickets;
+		this.date = date;
+	}
+	public Tickets() {
+		
+	}
 
 }

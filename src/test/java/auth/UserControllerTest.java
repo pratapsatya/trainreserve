@@ -1,6 +1,8 @@
 package auth;
 
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.testSecurityContext;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
@@ -13,8 +15,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+import java.util.Date;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +30,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.hellokoding.auth.model.Tickets;
 import com.hellokoding.auth.model.Trains;
+import com.hellokoding.auth.service.TicketService;
 import com.hellokoding.auth.service.TrainService;
 
-import junit.framework.Assert;
+
 
 import javax.servlet.Filter;
 
@@ -40,7 +46,8 @@ public class UserControllerTest extends AbstractControllerTest {
 	
 	@Autowired 
 	private TrainService trainService;
-
+	@Autowired
+    private TicketService tkService;
     @Autowired
     private WebApplicationContext context;
     private MockMvc mockMvc;
@@ -128,11 +135,17 @@ public class UserControllerTest extends AbstractControllerTest {
   		    }
     		  @Test
     		  	public void testgethistorySuccess() throws Exception {
+    			  
+    			  List<Tickets> list=tkService.findByName("lahari");
+    			  List<Tickets> list1=tkService.findByName("lahari98");
+    			  System.out.println(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"+list.toString());
   		  	  mockMvc.perform(get("/history"))
   		     .andExpect(status().isOk())
   		    .andDo(print())
   		       		    .andExpect(view().name("history"));
-  		    
+  		  	//Assert.assertNotNull("failure- expected entitiy", list);
+  		  	assertFalse(list.isEmpty());
+  		  assertTrue(list1.isEmpty());
   		    }   
     		  @Test
     		  	public void testgettrainsSuccess() throws Exception {
@@ -146,7 +159,34 @@ public class UserControllerTest extends AbstractControllerTest {
   		  	 Assert.assertNotNull("failure- expected entitiy", trainlist);
   		    }   
 
-    	
+    		  @Test
+  		  	public void testgetticketConfirmSuccess() throws Exception {
+    		  
+    			Tickets t=new Tickets();
+    			Date d=new Date();
+    			t.setDate(d);
+    			t.setTickets("2");
+    			t.setTrainname("hyderabadsuperfast");
+    			t.setUname("lahari78");
+    			tkService.save(t);
+    			
+    			String name = t.getUname();
+    			Assert.assertNotNull(name);
+    			
+    			List<Tickets> t1 = tkService.findByName(name);
+
+    		        Assert.assertEquals("lahari78", t1.get(0).getUname());
+    		        Assert.assertEquals("hyderabadsuperfast", t1.get(0).getTrainname());
+    		        Assert.assertEquals("2",t1.get(0).getTickets());
+    			
+    			
+    			
+   		  	  mockMvc.perform(post("/ticketconfirmation").param("nooftickets","2").param("trainname","hyderabadsuperfast").param("date","2018-07-17"))
+		     .andExpect(status().isOk())
+		    				    .andDo(print())
+		       		    .andExpect(view().name("ticketconfirmation"));
+		  	
+		    }   
 
 
 

@@ -31,5 +31,10 @@ public class TicketServiceImpl implements TicketService {
 		return ticketRepository.findByUname(uname); 
 		
 	}
+	@Override
+	public void save(Tickets tickets) {
+		ticketRepository.save(tickets);
+		
+	}
 	
 }
