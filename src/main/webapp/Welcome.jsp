@@ -101,7 +101,9 @@ function getDate()
 	    var d=new Date();
 	    var y=d.getFullYear()+"-0"+(d.getMonth()+1)+"-"+d.getDate();   
 	    var z=d.getFullYear()+"-0"+(d.getMonth()+1)+"-"+(d.getDate()+7);
-	    
+	    var s=document.getElementById("trip");
+	    localStorage.trip=s.value;
+	    console.log("trip is"+localStorage.trip);
 	    
 	    document.getElementById("myDate").min=y;
 	    document.getElementById("myDate").max=z; 
