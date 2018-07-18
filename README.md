@@ -35,7 +35,7 @@ create a database and grant permissions on that:
 
 create database db_example;
 create user 'testuser'@'localhost' identified by 'password';
-grant all on testdb.* to 'testuser'@'localhost';
+grant all on db_example.* to 'testuser'@'localhost';
 
 
 Give these details in "application.proprties" file
@@ -67,7 +67,7 @@ VALUES
 ('762525','vijayawada','tirupathi','10.00am-14.15pm','tirupathipassenger','1','9');
 INSERT INTO `trains` (`trainnumber`,`source`,`destination`,`timings`,`trainname`,`day`,`available`)
 VALUES
-('762523',''vijayawada','tirupathi','13.00pm-18.15pm','tirupathibejawadasuperfast','2','9');
+('762523','vijayawada','tirupathi','13.00pm-18.15pm','tirupathibejawadasuperfast','2','9');
 INSERT INTO `trains` (`trainnumber` ,`source`,`destination`,`timings`,`trainname`,`day`,`available`)
 VALUES
 ('762529','vijayawada','tirupathi','21.00pm-3.15am','vijayawadatirupathisuperfast','3','9');

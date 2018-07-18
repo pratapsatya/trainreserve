@@ -32,8 +32,10 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.Trains.auth.model.Tickets;
 import com.Trains.auth.model.Trains;
+import com.Trains.auth.model.User;
 import com.Trains.auth.service.TicketService;
 import com.Trains.auth.service.TrainService;
+import com.Trains.auth.service.UserService;
 
 import javax.servlet.Filter;
 
@@ -44,6 +46,8 @@ public class UserControllerTest extends AbstractControllerTest {
 	
 	@Autowired 
 	private TrainService trainService;
+	@Autowired 
+	private UserService userService;
 	@Autowired
     private TicketService tkService;
     @Autowired
@@ -98,16 +102,27 @@ public class UserControllerTest extends AbstractControllerTest {
     
       @Test
     	public void testLoginSuccess() throws Exception {
+    	  User u=new User();
+    	  u.setUsername("laharip");
+    	  u.setPassword("Satya@977");
+    	  userService.save(u);
+    	  
     	  mockMvc
-      .perform(formLogin().user("lahari").password("Satya@977"))
+      .perform(formLogin().user("laharip").password("Satya@977"))
       .andExpect(authenticated());
       
       }
      
     	  @Test
     	  	public void testUserLoginSuccess() throws Exception {
-    	    	mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8090/login")
-    	  	            .param("username", "lahari")
+    	    	
+    		  User u=new User();
+        	  u.setUsername("laharip");
+        	  u.setPassword("Satya@977");
+        	  userService.save(u);
+        	  System.out.println("................."+u.getPassword());
+    		  mockMvc.perform(MockMvcRequestBuilders.post("http://localhost:8090/login")
+    	  	            .param("username", u.getUsername())
     	  	            .param("password", "Satya@977"))
     	  		        .andDo(print())
     	  	            .andExpect(redirectedUrl("/"));	
@@ -133,8 +148,15 @@ public class UserControllerTest extends AbstractControllerTest {
   		    }
     		  @Test
     		  	public void testgethistorySuccess() throws Exception {
-    			  
-    			  List<Tickets> list=tkService.findByName("lahari");
+    			  Tickets t=new Tickets();
+      			Date d=new Date();
+      			t.setDate(d);
+      			t.setTickets("2");
+      			t.setTrainname("hyderabadsuperfast");
+      			t.setUname("lahari79");
+      			tkService.save(t);
+      			
+    			  List<Tickets> list=tkService.findByName("lahari79");
     			  List<Tickets> list1=tkService.findByName("lahari98");
     			  System.out.println(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"+list.toString());
   		  	  mockMvc.perform(get("/history"))
@@ -148,12 +170,13 @@ public class UserControllerTest extends AbstractControllerTest {
     		  @Test
     		  	public void testgettrainsSuccess() throws Exception {
     			  
-    			  List<Trains> trainlist=trainService.getTrains("hyderabad", "tirupathi");
-  		  	  mockMvc.perform(post("/trains").param("source","hyderabad").param("destiny","tirupathi").param("date","2018-07-17"))
+    			  List<Trains> trainlist=trainService.getTrains("vijayawada", "tirupathi");
+  		  	  mockMvc.perform(post("/trains").param("source","vijayawada").param("destiny","tirupathi").param("date","2018-07-17"))
   		     .andExpect(status().isOk())
   		    		.andExpect(model().attribute("trains", trainlist))
   		    .andDo(print())
   		       		    .andExpect(view().name("Trainlist"));
+  		    System.out.println(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"+trainlist.toString());
   		  	 Assert.assertNotNull("failure- expected entitiy", trainlist);
   		    }   
 
@@ -165,7 +188,7 @@ public class UserControllerTest extends AbstractControllerTest {
     			t.setDate(d);
     			t.setTickets("2");
     			t.setTrainname("hyderabadsuperfast");
-    			t.setUname("lahari78");
+    			t.setUname("lahari79");
     			tkService.save(t);
     			
     			String name = t.getUname();
@@ -173,7 +196,7 @@ public class UserControllerTest extends AbstractControllerTest {
     			
     			List<Tickets> t1 = tkService.findByName(name);
 
-    		        Assert.assertEquals("lahari78", t1.get(0).getUname());
+    		        Assert.assertEquals("lahari79", t1.get(0).getUname());
     		        Assert.assertEquals("hyderabadsuperfast", t1.get(0).getTrainname());
     		        Assert.assertEquals("2",t1.get(0).getTickets());
     			
