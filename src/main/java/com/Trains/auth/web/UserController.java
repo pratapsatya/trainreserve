@@ -1,13 +1,13 @@
-package com.hellokoding.auth.web;
+package com.Trains.auth.web;
 
-import com.hellokoding.auth.model.User;
-import com.hellokoding.auth.model.Tickets;
-
-import com.hellokoding.auth.service.SecurityService;
-import com.hellokoding.auth.service.TrainService;
-import com.hellokoding.auth.service.UserService;
-import com.hellokoding.auth.service.TicketService;
-import com.hellokoding.auth.validator.UserValidator;
+import com.Trains.auth.model.Tickets;
+import com.Trains.auth.model.Trains;
+import com.Trains.auth.model.User;
+import com.Trains.auth.service.SecurityService;
+import com.Trains.auth.service.TicketService;
+import com.Trains.auth.service.TrainService;
+import com.Trains.auth.service.UserService;
+import com.Trains.auth.validator.UserValidator;
 
 import java.security.Principal;
 import java.text.ParseException;
@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.hellokoding.auth.model.Trains;
 
 @Controller
 public class UserController {

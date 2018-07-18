@@ -1,4 +1,4 @@
-package com.hellokoding.auth.repository;
+package com.Trains.auth.repository;
 
 import java.util.Date;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-import com.hellokoding.auth.model.Tickets;
+import com.Trains.auth.model.Tickets;
 
 public interface TicketRepository extends JpaRepository<Tickets, Integer> {
 	@Transactional

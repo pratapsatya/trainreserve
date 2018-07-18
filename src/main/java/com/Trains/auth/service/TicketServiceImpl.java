@@ -1,4 +1,4 @@
-package com.hellokoding.auth.service;
+package com.Trains.auth.service;
 
 import java.util.Date;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.hellokoding.auth.model.Tickets;
-import com.hellokoding.auth.repository.TicketRepository;
+import com.Trains.auth.model.Tickets;
+import com.Trains.auth.repository.TicketRepository;
 
 @Service
 @Component

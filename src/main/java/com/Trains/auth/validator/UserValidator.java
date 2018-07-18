@@ -1,7 +1,8 @@
-package com.hellokoding.auth.validator;
+package com.Trains.auth.validator;
 
-import com.hellokoding.auth.model.User;
-import com.hellokoding.auth.service.UserService;
+import com.Trains.auth.model.User;
+import com.Trains.auth.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

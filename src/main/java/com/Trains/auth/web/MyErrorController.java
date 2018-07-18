@@ -1,4 +1,4 @@
-package com.hellokoding.auth.web;
+package com.Trains.auth.web;
 
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;

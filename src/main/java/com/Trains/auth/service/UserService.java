@@ -1,6 +1,6 @@
-package com.hellokoding.auth.service;
+package com.Trains.auth.service;
 
-import com.hellokoding.auth.model.User;
+import com.Trains.auth.model.User;
 
 public interface UserService {
     void save(User user);

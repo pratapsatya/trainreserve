@@ -1,4 +1,4 @@
-package com.hellokoding.auth.service;
+package com.Trains.auth.service;
 
 public interface SecurityService {
     String findLoggedInUsername();

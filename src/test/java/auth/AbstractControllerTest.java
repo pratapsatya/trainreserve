@@ -6,7 +6,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.hellokoding.auth.web.UserController;
+import com.Trains.auth.web.UserController;
 
 @WebAppConfiguration
 public abstract class AbstractControllerTest extends AbstractTest {

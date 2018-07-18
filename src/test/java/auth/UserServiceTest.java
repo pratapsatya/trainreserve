@@ -5,9 +5,9 @@ import javax.transaction.Transactional;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hellokoding.auth.model.User;
-import com.hellokoding.auth.repository.UserRepository;
-import com.hellokoding.auth.service.UserService;
+import com.Trains.auth.model.User;
+import com.Trains.auth.repository.UserRepository;
+import com.Trains.auth.service.UserService;
 
 import junit.framework.Assert;
 @SuppressWarnings("deprecation")

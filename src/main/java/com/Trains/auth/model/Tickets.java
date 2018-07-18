@@ -1,4 +1,4 @@
-package com.hellokoding.auth.model;
+package com.Trains.auth.model;
 
 import java.util.Date;
 

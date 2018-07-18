@@ -1,9 +1,9 @@
-package com.hellokoding.auth.service;
+package com.Trains.auth.service;
 
 import java.util.Date;
 import java.util.List;
 
-import com.hellokoding.auth.model.Tickets;
+import com.Trains.auth.model.Tickets;
 
 
 public interface TicketService {

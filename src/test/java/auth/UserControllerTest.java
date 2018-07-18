@@ -30,12 +30,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.hellokoding.auth.model.Tickets;
-import com.hellokoding.auth.model.Trains;
-import com.hellokoding.auth.service.TicketService;
-import com.hellokoding.auth.service.TrainService;
-
-
+import com.Trains.auth.model.Tickets;
+import com.Trains.auth.model.Trains;
+import com.Trains.auth.service.TicketService;
+import com.Trains.auth.service.TrainService;
 
 import javax.servlet.Filter;
 

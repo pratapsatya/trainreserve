@@ -1,4 +1,4 @@
-package com.hellokoding.auth.service;
+package com.Trains.auth.service;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.hellokoding.auth.model.Trains;
-import com.hellokoding.auth.repository.TrainRepository;
+import com.Trains.auth.model.Trains;
+import com.Trains.auth.repository.TrainRepository;
 
 
 @Service
