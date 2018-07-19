@@ -19,6 +19,12 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService{
     @Autowired
     private UserRepository userRepository;
+   
+    /**
+     * @param username provides the username of the User
+     * @return UserDetails has necessary information about the user
+     * @exception UsernameNotFoundException if the username is not found 
+     */
 
     @Override
     @Transactional(readOnly = true)

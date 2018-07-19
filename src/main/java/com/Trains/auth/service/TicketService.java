@@ -5,7 +5,10 @@ import java.util.List;
 
 import com.Trains.auth.model.Tickets;
 
-
+/*
+ * This is a service used to declare methods for'
+ * -saving the details of the tickets booked by the user
+ * -get the history of the user  */
 public interface TicketService {
 	 void save(Tickets tickets);
 
