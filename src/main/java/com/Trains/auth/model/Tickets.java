@@ -11,15 +11,18 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
-/*
- * This is a pojo class for "tickets"
+
+
+/**
+ * 
+ * @author laharipratap
+ *
+ *This is a pojo class for "tickets"
  * tickets is the name of the table which stores the name of the user 
  * and trainname booked by the user
  * and no of tickets booked by the user
  * and the date of journey
- * */
-
-
+ */
 
 @Entity
 @Table(name="tickets")

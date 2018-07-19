@@ -26,7 +26,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+/**
+ * 
+ * @author laharipratap
+ *
+ */
 @Controller
 public class UserController {
 		 
@@ -54,6 +58,7 @@ public class UserController {
      * @param model holds the model object
      * @return this controller returns the registration page
      */
+   
     
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
@@ -115,12 +120,13 @@ public class UserController {
         log.error(error);
     	return "Welcome";
     }
-    /*
+    /**
      * This is used to show the trains list
      * @param source is the place from which journey begins
      * @param destination is the place where the journey ends
      * @param dae is the date of journey
-     * @return returns the jsp page where the list of trains will be displayed*/
+     * @return returns the jsp page where the list of trains will be displayed
+     * */
     @RequestMapping(value = {"/trains"}, method = RequestMethod.POST)
     public String trains(Model model,@RequestParam(name="source") String source,@RequestParam(name="destiny") String destination,@RequestParam(name="date") String date) {
     	
@@ -133,13 +139,14 @@ public class UserController {
     	
         return "payment";
     }
-    /*
+    /**
      * This is used to display the ticket 
      * @param principal is the user logged in
      * @param tickets is the number of tickets booked by the user
      * @param tname is the train name 
-     * @param dae is the date of journey
-     * @return returns the jsp page where the ticket will be displayed*/
+     * @param date is the date of journey
+     * @return returns the jsp page where the ticket will be displayed
+     * */
     @RequestMapping(value = {"/ticketconfirmation"}, method = RequestMethod.POST)
     public String ticketConfirmation(Model model,Principal p,@RequestParam(name="nooftickets") String tickets,@RequestParam(name="trainname") String tname,@RequestParam(name="date") String date) throws ParseException {
     	String name=p.getName();
@@ -154,7 +161,7 @@ public class UserController {
     	tkService.insertData(name,tickets,tname,date);
         return "ticketconfirmation";
     }
-    /*
+    /**
      * This is used to display the list of tickets booked by the user 
      * @param principal is the user logged in
      * @return returns the jsp page that contains the list of tickets booked by the user

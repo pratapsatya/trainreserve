@@ -8,7 +8,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-/**/
+/**
+ * 
+ * @author laharipratap
+ *
+ *It is used to check the input fields and validate them
+ */
 @Component
 public class UserValidator implements Validator {
     @Autowired

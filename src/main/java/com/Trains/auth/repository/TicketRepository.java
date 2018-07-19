@@ -11,11 +11,15 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.Trains.auth.model.Tickets;
 
-/*
- * This is the repository to store the ticket details after booking is completed
+/**
+ * 
+ * @author laharipratap
+ *This is the repository to store the ticket details after booking is completed
  * sql query to insert the values is written and data is inserted into the database
  * when the user want to see the list of tickets booked by him ,
- * the data of that particular user is fetched by the findByName() method */
+ * the data of that particular user is fetched by the findByName() method
+ */
+
 
 
 public interface TicketRepository extends JpaRepository<Tickets, Integer> {

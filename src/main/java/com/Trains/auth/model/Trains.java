@@ -7,8 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/*
- * This is a pojo class for trains
+/**
+ * 
+ * @author laharipratap
+ *This is a pojo class for trains
  * Trains table has the list of all trains 
  * this has information about source and destination
  * trainid and train number and trainname
@@ -17,7 +19,9 @@ import javax.persistence.Table;
  * day is the value that represents different days of a week
  * like 0-sunday
  * 1-monday etc.
- * */
+ * 
+ */
+
 
 
 @Entity

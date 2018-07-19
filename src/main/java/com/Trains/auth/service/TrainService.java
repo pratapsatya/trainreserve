@@ -2,9 +2,11 @@ package com.Trains.auth.service;
 import java.util.List;
 import com.Trains.auth.model.Trains;
 
-/*
- * This is the service to get the list of trains from a particular source to destination*/
-
+/**
+ * 
+ * @author laharipratap
+ *This is the service to get the list of trains from a particular source to destination
+ */
 
 public interface TrainService {
 	

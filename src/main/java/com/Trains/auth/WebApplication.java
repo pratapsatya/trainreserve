@@ -9,11 +9,9 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
 
 /**
  * 
- * @author lahari
- * 
- * This class serves as the Main class for Mailer application
+ * @author laharipratap
+ *
  */
-
 @SpringBootApplication
 public class WebApplication extends SpringBootServletInitializer {
     @Override

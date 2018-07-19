@@ -2,11 +2,17 @@ package com.Trains.auth.model;
 
 import javax.persistence.*;
 import java.util.Set;
-/*
- * This is a pojo class for user
+
+
+/**
+ * 
+ * @author laharipratap
+ *This is a pojo class for user
  * this has the information about all users
  * the name and password of the user
- * the password is bcrypted before entering into database*/
+ * the password is bcrypted before entering into database
+ */
+
 @Entity
 @Table(name = "user")
 public class User {

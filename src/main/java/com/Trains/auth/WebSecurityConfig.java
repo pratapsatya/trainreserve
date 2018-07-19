@@ -9,13 +9,24 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+/**
+ * 
+ * @author laharipratap
+ *
+ */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    /**
+   	 * 
+   	 * @return BCryptPasswordEncoder
+   	 * 
+   	 * This method returns encoder object so that user password is not store in plain text format 
+   	 */
+    
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -36,6 +47,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                     .permitAll();
     }
+    /**
+     * This method is for user authentication purpose. AuthenticationManagerBuilder is built using userdetailsService and password encoder object
+     * 
+     * @param auth
+     * @throws Exception
+     * 
+     * 
+     */
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
