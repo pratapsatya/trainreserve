@@ -22,7 +22,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -62,7 +62,7 @@ public class UserControllerTest extends AbstractControllerTest {
               .addFilters(springSecurityFilterChain)
               .defaultRequest(get("/").with(testSecurityContext()))
               .build();
-      //this.authentication = new UsernamePasswordAuthenticationToken("lahari", "Satya@977");
+     
     }
 
     @Test
